@@ -37,3 +37,7 @@ class CountryCatalogue(object):
 		tmpCountry = Country(countryName, pop, area, cont)
 		self.countryCat[countryName] = tmpCountry
 		return True
+
+	def printCountryCatalogue(self):
+		for _, countryObj in self.countryCat.items():
+			print(countryObj)
