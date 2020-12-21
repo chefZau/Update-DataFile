@@ -41,3 +41,23 @@ class CountryCatalogue(object):
 	def printCountryCatalogue(self):
 		for _, countryObj in self.countryCat.items():
 			print(countryObj)
+
+	def saveCountryCatalogue(self, fname):
+		# save all country information in the catalogue to a file
+		lines = "Country|Continent|Population|Area\n"
+		count = 0
+
+		for countryName, countObj in sorted(self.countryCat.items()):
+			lines += "{}|{}|{}|{}\n".format(countryName, countObj.getContinent(), countObj.getPopulation(), countObj.getArea())
+			count += 1
+		
+		try:
+			outF = open(fname, "w")
+			outF.writelines(lines)
+			return count
+		
+		except:
+			return -1
+		
+		finally:
+			outF.close()
