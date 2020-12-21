@@ -30,3 +30,10 @@ class CountryCatalogue(object):
 		if country not in self.countryCat.keys():
 			return None
 		return self.countryCat[country]
+
+	def addCountry(self, countryName, pop, area, cont):
+		if countryName in self.countryCat.keys(): return False
+
+		tmpCountry = Country(countryName, pop, area, cont)
+		self.countryCat[countryName] = tmpCountry
+		return True
