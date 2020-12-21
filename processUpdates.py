@@ -98,3 +98,24 @@ def checkValidUpdates(updates):
 			return False
 
 	return True
+
+def promptUserFileName(fileName):
+	"""
+	If the fileName does not exist, keep asking until the user say N.
+	else return fileName.
+
+	fileName: the file you want to open
+	"""
+
+	while not os.path.exists(fileName):
+		
+		res = str(input("File does not exist. Quit? \"Y\"(yes) or \"N\"(no): "))
+
+		if res == "N":
+			fileName = str(input("Enter the name of the new file: ")) 
+
+		else:
+			log("output.txt", "Update Unsuccessful\n")
+			return None
+
+	return fileName
