@@ -60,3 +60,20 @@ def isValidContinent(string):
 	tmp = formatInput(string)
 	if tmp not in validContinent.keys(): return None
 	return validContinent[tmp]
+
+def log(fname, message):
+	"""
+	The purpose of this function is to
+	log to a file.
+
+	fname: file name
+	message: the message you want to log
+	"""
+	file = None
+	try:
+		file = open(fname, "a")
+	except:
+		file = open(fname, "w")
+	finally:
+		file.write(message)
+		file.close()
