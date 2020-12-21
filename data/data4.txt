@@ -1,0 +1,8 @@
+Country|Continent|Population|Area
+Brazil|South America||8,511,965
+Mexico|||128,632,777
+Thaila|331,310||95,541,921
+Canada||34,207,000|9,976,140
+Vietnam|331,310|Asia|95,541,921
+Egypt|||
+South Korea|331,890|Asia|541,921

@@ -1,0 +1,17 @@
+Brazil;P=193,364,111;A=8,511,966
+Vietnam;A=331,310;P=95,541,921;C=Asia
+Mexico;P=128,632,777
+Egypt;P=93,384,001
+German;P=93384,001
+Thailand;A=331,310;P=95,541,921;C=Asi
+SouthKorea;A=484,543
+South     korea;A=484,546
+Japan;P=128,632
+Argen ti n a;P=128,632
+Russia;P=42,767,543;P = 43,767,543;P= 45,767,543
+T346;P=128,632
+France;A= 640,324;P=42,767,543;P = 43,7  67,543;P= 45,767,543
+Cuba;C=SoutH      America
+Sweden;P=9,995,345;A-450,295,C = europe
+
+
