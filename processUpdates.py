@@ -77,3 +77,24 @@ def log(fname, message):
 	finally:
 		file.write(message)
 		file.close()
+
+def checkValidUpdates(updates):
+	"""
+	The purpose of this function is to
+	check whether every element in a list is 
+	valid.
+
+	updates: is a list
+	"""
+	for update in updates:
+
+		if "=" not in update: return False
+
+		L, value = update.split("=")
+		L = L.strip()
+		if L in ["P", "A"] and not isValidNum(value.strip()):
+			return False
+		elif L == "C" and not isValidContinent(value.strip()):
+			return False
+
+	return True
