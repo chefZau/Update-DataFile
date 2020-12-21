@@ -17,7 +17,7 @@ class Country(object):
 
 	def getContinent(self):
 		return self.continent
-	
+
 	def setPopulation(self, newPop):
 		self.pop = newPop
 
@@ -26,3 +26,7 @@ class Country(object):
 
 	def setContinent(self, newCont):
 		self.continent = newCont
+
+	def __repr__(self):
+		# Name (pop: population value, size: area value) in Continent
+		return "{} (pop: {}, size: {}) in {}".format(self.name, self.pop, self.area, self.continent)
