@@ -13,7 +13,6 @@ class CountryCatalogue(object):
 			countryObj = Country(name, pop, area, continent)
 			self.countryCat[name] = countryObj
 
-	
 	def setPopulationOfCountry(self, countryName, newPop):
 		if countryName in self.countryCat.keys():
 			self.countryCat[countryName].setPopulation(newPop)
