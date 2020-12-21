@@ -15,6 +15,7 @@ def formatInput(textLine):
 	
 	return textLine
 
+
 def capitalizeInput(sentence):
 	"""
 	This function will take a sentence(string), convert it to the proper format.
@@ -24,6 +25,7 @@ def capitalizeInput(sentence):
 	since we are only changing the first letter
 	"""
 	return " ".join(list(map(lambda x : x[0].upper() + x[1:], sentence.strip().split())))
+
 
 def isValidNum(string):
 	"""
@@ -39,6 +41,7 @@ def isValidNum(string):
 	except ValueError:
 		return False
 	return ("{:,}".format(int(tmp)) == string)
+
 
 def isValidContinent(string):
 	"""
@@ -61,6 +64,7 @@ def isValidContinent(string):
 	if tmp not in validContinent.keys(): return None
 	return validContinent[tmp]
 
+
 def log(fname, message):
 	"""
 	The purpose of this function is to
@@ -77,6 +81,7 @@ def log(fname, message):
 	finally:
 		file.write(message)
 		file.close()
+
 
 def checkValidUpdates(updates):
 	"""
@@ -99,6 +104,7 @@ def checkValidUpdates(updates):
 
 	return True
 
+
 def promptUserFileName(fileName):
 	"""
 	If the fileName does not exist, keep asking until the user say N.
@@ -119,3 +125,63 @@ def promptUserFileName(fileName):
 			return None
 
 	return fileName
+
+
+def processUpdates(cntryFileName, updateFileName):
+	"""
+	cntryFileName  : the name of a file containing country data, data.txt
+	updateFileName : contain the name of a file containing updates.
+
+	each record(row) specifies updates for a single country
+
+	record format: Country;update1;update2;update3 
+	update format: <L>=<value>
+	L = {
+		P : population,
+		A : area,
+		C : continent
+	} 
+	"""
+	cntryFileName = promptUserFileName(cntryFileName)
+	if not cntryFileName: return False
+
+	updateFileName = promptUserFileName(updateFileName)
+	if not updateFileName: return False
+
+	cntries = CountryCatalogue(cntryFileName)
+	queries = open(updateFileName, "r", encoding="utf-8").readlines()
+
+	for query in queries:
+
+		cnName, *updates = query.strip().split(";")
+		
+		cnName = capitalizeInput(cnName)
+
+		if not updates: 
+			print("No Updates for Country: ", cnName)
+			continue
+
+		# if updates not valid or no updates, skip the row
+		if not checkValidUpdates(updates[:3]): 
+			print("Invalid Query for Country: ", cnName, *updates, sep=" ")
+			continue
+
+		# if country not exists, create new country with empty value
+		if not cntries.findCountry(cnName):
+			cntries.addCountry(cnName, "", "", "")
+		
+		for update in updates[:3]:
+
+			L, value = update.split("=")
+
+			if L.strip() == "P": 
+				cntries.setPopulationOfCountry(cnName, value.strip())
+			elif L.strip() == "A":
+				cntries.setAreaOfCountry(cnName, value.strip())
+			elif L.strip() == "C":
+				cntries.setContinentOfCountry(cnName, isValidContinent(value.strip()))
+
+	cntries.saveCountryCatalogue("output.txt")
+	return True
+
+
