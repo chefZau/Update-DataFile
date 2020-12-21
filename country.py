@@ -17,3 +17,12 @@ class Country(object):
 
 	def getContinent(self):
 		return self.continent
+	
+	def setPopulation(self, newPop):
+		self.pop = newPop
+
+	def setArea(self, newArea):
+		self.area = newArea
+
+	def setContinent(self, newCont):
+		self.continent = newCont
